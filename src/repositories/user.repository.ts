@@ -32,6 +32,7 @@ export class UserRepository {
   }
 
   async createUser(user: User): Promise<void> {
+    delete user.password;
     await this.collection.add(user);
   }
 
@@ -39,7 +40,6 @@ export class UserRepository {
      let docRef = this.collection.doc(user.id);
       await docRef.set({
         name: user.name,
-        idade: user.idade,
         email: user.email
       });
   }

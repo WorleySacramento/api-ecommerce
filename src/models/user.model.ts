@@ -6,11 +6,13 @@ export type User = {
   name: string;
   idade: number;
   email: string;
+  password?: string;
 };
 
 
 export const userSchema = Joi.object().keys({
     name: Joi.string().required(),
     idade: Joi.number().integer().required(),
-    email: Joi.string().email().required()
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required()
   })
