@@ -16,7 +16,5 @@ export const errorHandler = (app: express.Express) => {
       }else{
         new InternalServerError().send(res);
       }
-
-
   });
 }
