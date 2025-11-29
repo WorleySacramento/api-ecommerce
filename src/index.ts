@@ -4,6 +4,7 @@ import {initializeApp as initializeFireBaseApp} from "firebase/app";
 import { routes } from "./routes/index";
 import { errorHandler } from "./middlewares/error.handler.middleware";
 import { pageNotFoundHandler } from "./middlewares/page-not-found.middeware";
+import { auth } from "./middlewares/auth.middleware";
 
 const serviceAccount = require('../firebase-adminsdk-.json');
 
@@ -15,7 +16,7 @@ initializeFireBaseApp({
 })
 const app = express();
 
-
+auth(app)
 routes(app);
 pageNotFoundHandler(app);
 errorHandler(app);
