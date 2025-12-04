@@ -25,7 +25,7 @@ export const companySchema = Joi.object().keys({
     Joi.string().length(11).required(),
     Joi.string().length(14).required()
   ),
-  telefone: Joi.string().required(),
+  telefone: Joi.string().regex(/^(\(?\d{2}\)?\s?)?9?\d{4}-?\d{4}$/).required(),
   horarioFuncionamento: Joi.string().required(),
   endereco: Joi.string().required(),
   localizacao: Joi.string().required(),
