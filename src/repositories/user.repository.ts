@@ -32,7 +32,7 @@ export class UserRepository {
   }
 
   async createUser(user: User): Promise<void> {
-    delete user.password;
+    // delete user.password;
     await this.collection.add(user);
   }
 

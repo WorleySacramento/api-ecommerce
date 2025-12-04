@@ -10,12 +10,20 @@ export type User = {
 };
 
 
-export const userSchema = Joi.object().keys({
+export const newUserSchema = Joi.object().keys({
   name: Joi.string().required(),
   idade: Joi.number().integer().required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required()
 })
+
+export const updateUserSchema = Joi.object().keys({
+  name: Joi.string().required(),
+  idade: Joi.number().integer().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).optional()
+})
+
 
 
 export const authLoginSchema = Joi.object().keys({

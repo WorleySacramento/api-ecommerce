@@ -2,13 +2,15 @@ import { NextFunction, Request, Response } from 'express';
 import express from 'express';
 import { UnauthorizedError } from '../errors/unauthorized.error';
 import { getAuth } from 'firebase-admin/auth';
+import { UserService } from '../services/user.service';
+import { ForbiddenError } from '../errors/forbiden.errr';
 
 
 
 export const auth = (app: express.Express) => {
   app.use(async (req: Request, res: Response, next: NextFunction) => {
 
-    if(req.method === 'POST' && req.url.endsWith('/auth/login')) {
+    if(req.method === 'POST' && req.url.startsWith('/auth/login')) {
      return next();
     }
     
@@ -17,12 +19,19 @@ export const auth = (app: express.Express) => {
     if (token) {
       try {
         const decodeIdToken = await getAuth().verifyIdToken(token, true)
-        console.log('decodeIdToken', decodeIdToken);
+
+        const user = await new UserService().getById(decodeIdToken.uid);
+        if (!user) {
+         return next(new ForbiddenError())
+        }
+        req.user = user;
+
         return next();
       } catch (error) {
-        next(new UnauthorizedError());
+        return next(new UnauthorizedError());
       }
+    } else {
+      return next();
     }
-    next(new UnauthorizedError());
   });
 }

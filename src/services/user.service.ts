@@ -28,8 +28,9 @@ export class UserService {
 
   async createUser(user: User): Promise<void> {
   const userAuth = await this.authService.create(user);
+  console.log(userAuth);
   user.id = userAuth.uid;
-     return this.userRepository.updateUser(user);
+     await this.userRepository.updateUser(user);
   }
 
   async updateUser(id: string, user: User): Promise<void> {
@@ -40,10 +41,14 @@ export class UserService {
     _user.name = user.name;
     _user.idade = user.idade;
     _user.email = user.email;
-   return this.userRepository.updateUser(_user);
+
+    await this.authService.update(id, user);
+    await this.userRepository.updateUser(_user);
   }
 
   async deleteUser(id: string): Promise<void> {
+
+     this.authService.delete(id);
     return this.userRepository.deleteUser(id);
   }
 
