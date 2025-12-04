@@ -12,4 +12,12 @@ export class AuthController {
    res.send({ token })
   }
 
+  static async recovery(req: Request, res: Response) {
+    const { email } = req.body;
+
+   await new AuthService().recovery(email);
+
+    res.end();
+  }
+
 }

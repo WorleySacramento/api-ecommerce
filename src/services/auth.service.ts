@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, getAuth as getAuthSignIn, UserCredential } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth as getAuthSignIn, UserCredential, sendPasswordResetEmail } from "firebase/auth";
 import { EmailAlreadyExistsError } from "../errors/email-already-exists";
 import { User } from "../models/user.model";
 import { getAuth, UpdateRequest, UserRecord } from "firebase-admin/auth";
@@ -49,4 +49,10 @@ export class AuthService {
   async delete(id: string){
     await getAuth().deleteUser(id);
   }
+
+  async recovery(email: string) {
+  await  sendPasswordResetEmail(getAuthSignIn(), email);
+
+  }
+
 }
