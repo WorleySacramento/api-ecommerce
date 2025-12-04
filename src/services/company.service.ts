@@ -26,7 +26,7 @@ export class CompanyService {
   }
 
   async save(company: Company): Promise<void> {
-     await this.companyRepository.update(company);
+     await this.companyRepository.save(company);
   }
 
   async update(id: string, company: Company): Promise<void> {

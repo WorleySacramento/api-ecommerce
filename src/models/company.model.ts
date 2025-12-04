@@ -20,14 +20,17 @@ export type Company = {
 export const companySchema = Joi.object().keys({
   razaoSocial: Joi.string().required(),
   nomeFantasia: Joi.string().required(),
-  logoMarca: Joi.string(),
-  cpfCnpj: Joi.string().required(),
+  logoMarca: Joi.string().allow(null),
+  cpfCnpj: Joi.alternatives().try(
+    Joi.string().length(11).required(),
+    Joi.string().length(14).required()
+  ),
   telefone: Joi.string().required(),
   horarioFuncionamento: Joi.string().required(),
   endereco: Joi.string().required(),
   localizacao: Joi.string().required(),
   taxaEntrega: Joi.number().required(),
-  ativa: Joi.boolean().default(true).optional(),
+  ativa: Joi.boolean().only().allow(true).default(true).optional(),
 })
 
 export const updateCompanySchema = Joi.object().keys({
