@@ -1,31 +1,34 @@
 import { Joi } from "celebrate";
+import { Category } from "./category.model";
 
 export type Product = {
   id?: string;
-  companyId: string;
   nome: string;
   descricao: string;
   preco: number;
-  imagem: string;
-  ativo: boolean;
-  estoque: number;
+  imagem?: string;
+  categoria:Category;
+  ativa: boolean;
 };
 
 export const newProductSchema = Joi.object().keys({
-  companyId: Joi.string().required(),
-  nome: Joi.string().required(),
-  descricao: Joi.string().required(),
+  nome: Joi.string().min(3).required(),
+  descricao: Joi.string().allow(null),
   preco: Joi.number().positive().required(),
   imagem: Joi.string().allow(null),
-  ativo: Joi.boolean().default(true).optional(),
-  estoque: Joi.number().integer().min(0).default(0).optional(),
+  categoria: Joi.object().keys({
+    id: Joi.string().required(),
+  }).required(),
+  ativa: Joi.boolean().only().allow(true).default(true)
 });
 
 export const updateProductSchema = Joi.object().keys({
-  nome: Joi.string().required(),
+  nome: Joi.string().min(3).required(),
   descricao: Joi.string().required(),
   preco: Joi.number().positive().required(),
   imagem: Joi.string().allow(null),
-  ativo: Joi.boolean().required(),
-  estoque: Joi.number().integer().min(0).required(),
+  categoria: Joi.object().keys({
+    id: Joi.string().required(),
+  }).required(),
+  ativa: Joi.boolean().required(),
 });
