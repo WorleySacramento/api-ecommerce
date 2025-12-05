@@ -3,28 +3,19 @@ import {
   uploadCompanyImage,
   uploadProductImage,
 } from '../controllers/upload.controller';
-import { uploadSingleImage } from '../middlewares/upload.middleware';
 
 export const uploadRoutes = (app: Express) => {
   /**
-   * Upload de imagem de empresa
+   * Upload de imagem de empresa via base64
    * POST /api/upload/company
-   * Body: multipart/form-data com campo "image"
+   * Body: JSON com campo "imageBase64" (string base64)
    */
-  app.post(
-    '/api/upload/company',
-    uploadSingleImage,
-    uploadCompanyImage
-  );
+  app.post('/api/upload/company', uploadCompanyImage);
 
   /**
-   * Upload de imagem de produto
+   * Upload de imagem de produto via base64
    * POST /api/upload/product
-   * Body: multipart/form-data com campo "image"
+   * Body: JSON com campo "imageBase64" (string base64)
    */
-  app.post(
-    '/api/upload/product',
-    uploadSingleImage,
-    uploadProductImage
-  );
+  app.post('/api/upload/product', uploadProductImage);
 };

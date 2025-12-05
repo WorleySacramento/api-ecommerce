@@ -1,4 +1,4 @@
-# Integração Cloudinary - Guia de Configuração
+# Integração Cloudinary - Upload Base64
 
 ## 📋 Pré-requisitos
 
@@ -27,12 +27,16 @@ CLOUDINARY_API_SECRET=seu_api_secret
 
 ### Upload de Imagem de Empresa
 
+**Request:**
 ```bash
 curl -X POST http://localhost:3000/api/upload/company \
-  -F "image=@/caminho/para/logo.png"
+  -H "Content-Type: application/json" \
+  -d '{
+    "imageBase64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+  }'
 ```
 
-**Resposta:**
+**Response:**
 ```json
 {
   "success": true,
@@ -43,12 +47,16 @@ curl -X POST http://localhost:3000/api/upload/company \
 
 ### Upload de Imagem de Produto
 
+**Request:**
 ```bash
 curl -X POST http://localhost:3000/api/upload/product \
-  -F "image=@/caminho/para/produto.jpg"
+  -H "Content-Type: application/json" \
+  -d '{
+    "imageBase64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABA..."
+  }'
 ```
 
-**Resposta:**
+**Response:**
 ```json
 {
   "success": true,
@@ -57,12 +65,148 @@ curl -X POST http://localhost:3000/api/upload/product \
 }
 ```
 
+## 📝 Exemplos de Código
+
+### JavaScript/TypeScript - Converter imagem para Base64
+
+```javascript
+// Ler arquivo e converter para base64
+function convertImageToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result); // Inclui "data:image/...;base64,"
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+}
+
+// Fazer upload de empresa
+async function uploadCompanyImage(file) {
+  const imageBase64 = await convertImageToBase64(file);
+  
+  const response = await fetch('/api/upload/company', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      imageBase64,
+    }),
+  });
+
+  const data = await response.json();
+  return data.imageUrl;
+}
+
+// Fazer upload de produto
+async function uploadProductImage(file) {
+  const imageBase64 = await convertImageToBase64(file);
+  
+  const response = await fetch('/api/upload/product', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      imageBase64,
+    }),
+  });
+
+  const data = await response.json();
+  return data.imageUrl;
+}
+
+// Uso:
+const file = document.getElementById('imageInput').files[0];
+const imageUrl = await uploadCompanyImage(file);
+console.log('URL da imagem:', imageUrl);
+```
+
+### React Hook para Upload
+
+```typescript
+import { useState } from 'react';
+
+function ImageUploader() {
+  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setLoading(true);
+    try {
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const imageBase64 = event.target?.result as string;
+        
+        const response = await fetch('/api/upload/company', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ imageBase64 }),
+        });
+
+        const data = await response.json();
+        setImageUrl(data.imageUrl);
+      };
+      reader.readAsDataURL(file);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <input 
+        type="file" 
+        accept="image/*" 
+        onChange={handleImageChange} 
+        disabled={loading}
+      />
+      {imageUrl && <img src={imageUrl} alt="Uploaded" />}
+    </div>
+  );
+}
+```
+
+### Integração com Formulários de Cadastro
+
+```typescript
+// Exemplo ao criar uma empresa
+async function createCompanyWithImage(companyData, imageFile) {
+  const imageUrl = await uploadCompanyImage(imageFile);
+
+  const response = await fetch('/api/companies', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...companyData,
+      logoMarca: imageUrl, // URL retornada pelo upload
+    }),
+  });
+
+  return response.json();
+}
+
+// Uso:
+await createCompanyWithImage(
+  {
+    razaoSocial: 'Minha Empresa',
+    nomeFantasia: 'Minha Marca',
+    cpfCnpj: '12345678000190',
+    // ... outros campos
+  },
+  imagemFile
+);
+```
+
 ## 📦 Limites Gratuitos do Cloudinary
 
 - **Armazenamento**: 10 GB
 - **Transferência**: 10 GB/mês
 - **Transformações**: Ilimitadas
-- **Tamanho máximo de arquivo**: 5 MB (configurado em `upload.middleware.ts`)
+- **Tamanho máximo**: Sem limite prático para base64
 - **Formatos suportados**: JPEG, PNG, WebP, GIF
 
 ## 🗂️ Estrutura de Pastas
@@ -73,94 +217,75 @@ As imagens são organizadas automaticamente:
 
 ## 🛡️ Segurança
 
-- As imagens são otimizadas automaticamente
-- URLs são seguras (https)
-- Suporte a CDN global do Cloudinary
-- Compressão automática de imagens
+- ✅ URLs são seguras (https)
+- ✅ Suporte a CDN global do Cloudinary
+- ✅ Compressão automática de imagens
+- ✅ Redimensionamento automático (máx 1000px)
+- ✅ Validação de tipo de imagem
 
-## 📝 Exemplos de Uso com JavaScript
+## 📚 Estrutura das Rotas
 
-### Fazer upload de empresa
-
-```javascript
-const formData = new FormData();
-formData.append('image', fileInput.files[0]);
-
-const response = await fetch('/api/upload/company', {
-  method: 'POST',
-  body: formData
-});
-
-const data = await response.json();
-console.log('URL da imagem:', data.imageUrl);
-```
-
-### Fazer upload de produto
-
-```javascript
-const formData = new FormData();
-formData.append('image', fileInput.files[0]);
-
-const response = await fetch('/api/upload/product', {
-  method: 'POST',
-  body: formData
-});
-
-const data = await response.json();
-console.log('URL da imagem:', data.imageUrl);
-```
+| Método | Rota | Body | Descrição |
+|--------|------|------|-----------|
+| POST | `/api/upload/company` | JSON | Upload empresa via base64 |
+| POST | `/api/upload/product` | JSON | Upload produto via base64 |
 
 ## 🔄 Integração com Models
 
-Após o upload, salve a URL retornada nos seus models:
-
 ```typescript
-// Exemplo para Company
-const company = {
-  razaoSocial: 'Minha Empresa',
-  nomeFantasia: 'Minha Marca',
-  logoMarca: imageUrl, // URL retornada pelo upload
+// Company Model
+export type Company = {
+  id?: string;
+  razaoSocial: string;
+  nomeFantasia: string;
+  logoMarca: string; // URL do Cloudinary
+  cpfCnpj: string;
   // ... outros campos
 };
 
-// Exemplo para Product
-const product = {
-  nome: 'Meu Produto',
-  descricao: 'Descrição',
-  preco: 99.99,
-  imagem: imageUrl, // URL retornada pelo upload
+// Product Model
+export type Product = {
+  id?: string;
+  companyId: string;
+  nome: string;
+  descricao: string;
+  preco: number;
+  imagem: string; // URL do Cloudinary
   // ... outros campos
 };
 ```
 
 ## ✅ Próximos Passos
 
-1. ✅ Dependências instaladas (cloudinary, multer)
-2. ✅ Serviço CloudinaryService criado
-3. ✅ Middlewares de upload configurados
-4. ✅ Routes de upload criadas
-5. ⏳ Criar endpoints CRUD para Companies com upload
-6. ⏳ Criar endpoints CRUD para Products com upload
-7. ⏳ Integrar validação de imagem com Joi
+1. ✅ Integração Cloudinary com upload base64
+2. ✅ Rotas de upload criadas
+3. ⏳ Integrar uploads nos CRUD de empresas
+4. ⏳ Integrar uploads nos CRUD de produtos
+5. ⏳ Adicionar validação de tamanho de imagem em base64
 
 ## 🐛 Troubleshooting
 
-### Erro: "Cannot find module 'cloudinary'"
-```bash
-npm install cloudinary multer @types/multer
-```
-
 ### Erro: "CLOUDINARY_CLOUD_NAME is undefined"
-Certifique-se de que o arquivo `.env` está na raiz do projeto e possui as variáveis corretas.
+Certifique-se de que o arquivo `.env` está na raiz do projeto com as variáveis corretas.
 
-### Erro ao fazer upload: "File too large"
-O limite máximo é 5 MB. Reduza o tamanho da imagem.
+### Erro: "Campo imageBase64 é obrigatório"
+Verifique se está enviando o campo `imageBase64` no JSON com a string base64 completa.
 
-### Erro: "Only image files are allowed"
-Use apenas formatos: JPEG, PNG, WebP ou GIF.
+### Erro: "Invalid base64 string"
+A string base64 pode estar corrompida. Certifique-se de que:
+- A string está completa
+- Não contém quebras de linha
+- Inclui o prefixo `data:image/...;base64,` ou apenas base64 puro
+
+### Arquivo muito grande?
+Se a string base64 ficar muito grande:
+1. Comprima a imagem antes de converter
+2. Use formato WebP em vez de PNG
+3. Reduza a qualidade JPEG
 
 ## 📚 Referências
 
 - [Documentação Cloudinary](https://cloudinary.com/documentation)
 - [Node.js SDK Cloudinary](https://cloudinary.com/documentation/node_integration)
-- [Multer Documentation](https://github.com/expressjs/multer)
+- [FileReader API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)
+- [Base64 Encoding - MDN](https://developer.mozilla.org/en-US/docs/Glossary/Base64)
