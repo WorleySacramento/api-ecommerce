@@ -19,13 +19,3 @@ export const updateCategorySchema = Joi.object().keys({
   ativa: Joi.boolean().required(),
 })
 
-
-
-export const authLoginCompanySchema = Joi.object().keys({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(6).required()
-})
-
-export const authRecoveryCompanySchema = Joi.object().keys({
-  email: Joi.string().email().required(),
-})

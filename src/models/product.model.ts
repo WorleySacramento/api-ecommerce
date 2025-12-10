@@ -13,20 +13,20 @@ export type Product = {
 
 export const newProductSchema = Joi.object().keys({
   nome: Joi.string().min(3).required(),
-  descricao: Joi.string().allow(null),
+  descricao: Joi.string().allow(null).default(null),
   preco: Joi.number().positive().required(),
-  imagem: Joi.string().allow(null),
+  imagem: Joi.string().allow(null).default(null).optional(),
   categoria: Joi.object().keys({
-    id: Joi.string().required(),
+    id: Joi.string().required()
   }).required(),
   ativa: Joi.boolean().only().allow(true).default(true)
 });
 
 export const updateProductSchema = Joi.object().keys({
   nome: Joi.string().min(3).required(),
-  descricao: Joi.string().required(),
+  descricao: Joi.string().allow(null).default(null),
   preco: Joi.number().positive().required(),
-  imagem: Joi.string().allow(null),
+  imagem: Joi.string().allow(null).default(null),
   categoria: Joi.object().keys({
     id: Joi.string().required(),
   }).required(),
