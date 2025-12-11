@@ -4,6 +4,7 @@ import { authRoutes } from "./auth.route";
 import { companyRoute } from "./companies.route";
 import { categoryRoute } from "./categories.route";
 import { productRoute } from "./products.route";
+import { paymentRoute } from "./payments.route";
 
 export const routes = (app: express.Express) => {
   app.use(express.json());
@@ -13,4 +14,5 @@ export const routes = (app: express.Express) => {
   app.use(companyRoute);
   app.use(categoryRoute)
   app.use(productRoute)
+  app.use(paymentRoute);
 };
