@@ -1,6 +1,6 @@
 import { Product } from './../models/product.model';
 
-import { CollectionReference, getFirestore } from "firebase-admin/firestore";
+import { CollectionReference, getFirestore, QuerySnapshot } from "firebase-admin/firestore";
 
 
 export class ProductRepository {
@@ -12,7 +12,16 @@ export class ProductRepository {
 
   async getAll(): Promise<Product[]> {
     const snapShot = await this.collection.get();
-    return snapShot.docs.map(doc => {
+    return this.snapShotToArray(snapShot);
+  }
+
+  async search(categoriaId: string): Promise<Product[]> {
+   const snapShot = await this.collection.where('categoria.id', '==', categoriaId).get();
+    return this.snapShotToArray(snapShot);
+  }
+
+  private snapShotToArray(snapShot: QuerySnapshot): Product[] {
+   return snapShot.docs.map(doc => {
       return {
         id: doc.id,
         ...doc.data()
@@ -38,16 +47,16 @@ export class ProductRepository {
   }
 
   async update( product: Product): Promise<void> {
-     let docRef = this.collection.doc(product.id!);
-     delete product.id;
-      await docRef.set({
-        descricao: product.descricao,
-        ativa: product.ativa,
-        nome: product.nome,
-        preco: product.preco,
-        imagem: product.imagem,
-        categoria: product.categoria.id
-      });
+   const docRef = this.collection.doc(product.id!);
+   await docRef.set({
+     nome: product.nome,
+     descricao: product.descricao,
+      preco: product.preco,
+      imagem: product.imagem,
+      categoria: product.categoria,
+      ativa: product.ativa
+    })
+
   }
 
   async delete(id: string): Promise<void> {

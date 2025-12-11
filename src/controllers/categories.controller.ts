@@ -17,7 +17,9 @@ export class CategoriesController {
 
   static async save(req: Request, res: Response) {
     await new CategoryService().save(req.body);
-    res.status(201).send({ message: "Category created" });
+    res.status(201).send({ 
+      message: "Category created"
+     });
   }
 
   static async update(req: Request, res: Response) {

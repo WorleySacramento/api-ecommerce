@@ -5,7 +5,7 @@ import { CollectionReference, getFirestore } from "firebase-admin/firestore";
 
 export class CategoryRepository {
 
-  private collection = {} as CollectionReference;
+  private collection: CollectionReference;
 
   constructor() {
     this.collection = getFirestore().collection('categories');
@@ -33,21 +33,21 @@ export class CategoryRepository {
     }
   }
 
-  async save(category: Category): Promise<void> {
+  async save(category: Category){
     // delete user.password;
     await this.collection.add(category);
   }
 
-  async update( category: Category): Promise<void> {
+  async update( category: Category){
      let docRef = this.collection.doc(category.id!);
-     delete category.id;
+     
       await docRef.set({
         descricao: category.descricao,
         ativa: category.ativa
       });
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: string){
     await this.collection.doc(id).delete();
   }
 

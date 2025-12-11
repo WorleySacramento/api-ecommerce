@@ -2,7 +2,7 @@ import { Joi } from "celebrate";
 import { Category } from "./category.model";
 
 export type Product = {
-  id?: string;
+  id: string;
   nome: string;
   descricao: string;
   preco: number;
@@ -31,4 +31,8 @@ export const updateProductSchema = Joi.object().keys({
     id: Joi.string().required(),
   }).required(),
   ativa: Joi.boolean().required(),
+});
+
+export const searchQuerySchema = Joi.object().keys({
+  categoriaId: Joi.string().required(),
 });
