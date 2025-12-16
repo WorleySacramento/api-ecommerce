@@ -14,5 +14,8 @@ export class OrdersController {
     static async search(req: Request, res: Response) {
         const orders = await new OrderService().search(req.query as QueryParamsOrder);
         res.send(orders);
+   
+
+        console.log(req.query);
     }
 }

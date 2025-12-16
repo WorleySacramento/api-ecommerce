@@ -38,12 +38,12 @@ export class Order {
 
 
 export enum OrderStatus {
-  PENDENTE = "PENDENTE",
-  APROVADO = "APROVADO",
-  EM_PREPARACAO = "EM_PREPARACAO",
-  EM_ENTREGA = "EM_ENTREGA",
-  ENTREGUE = "ENTREGUE",
-  CANCELADO = "CANCELADO"
+  PENDENTE = "pendente",
+  APROVADO = "aprovado",
+  EM_PREPARACAO = "em_preparacao",
+  EM_ENTREGA = "em_entrega",
+  ENTREGUE = "entregue",
+  CANCELADO = "cancelado"
 }
 
 
@@ -72,6 +72,8 @@ export const newOrderSchema = Joi.object().keys({
   status: Joi.string().only().allow(OrderStatus.PENDENTE).default(OrderStatus.PENDENTE)
 });
 
+export const updateOrderSchema = Joi.object().keys({});
+
 export type QueryParamsOrder = {
   empresaId?: string;
   dataInicio?: Date;
@@ -79,9 +81,7 @@ export type QueryParamsOrder = {
   status?: OrderStatus;
 }
 
-export const updateOrderSchema = Joi.object().keys({});
-
-export const searchParamsOrderQuerySchema = Joi.object().keys({
+export const searchOrderQuerySchema = Joi.object().keys({
   empresaId: Joi.string().trim(),
   dataInicio: Joi.date(),
   dataFim: Joi.date(),
