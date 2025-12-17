@@ -15,6 +15,10 @@ export class OrderItem  {
     this.quantidade = data.quantidade;
     this.observacao = data.observacao;
   }
+
+  getTotal(): number {
+    return this.produto.preco * this.quantidade;
+  }
 }
 
 

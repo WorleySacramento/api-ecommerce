@@ -4,7 +4,7 @@ import { Order, QueryParamsOrder } from "../models/order.model.js";
 
 export class OrdersController {
     static async save(req: Request, res: Response) {
-        const order = req.body as Order;
+        const order = new Order(req.body);
         await new OrderService().save(order);
         res.status(201).send({
             message: "Pedido criado com sucesso!"
@@ -14,8 +14,6 @@ export class OrdersController {
     static async search(req: Request, res: Response) {
         const orders = await new OrderService().search(req.query as QueryParamsOrder);
         res.send(orders);
-   
 
-        console.log(req.query);
     }
 }
