@@ -1,12 +1,13 @@
 import { Joi } from "celebrate";
 import { phoneRegexPatern } from "../utils/regex-utils";
+import { DocumentData, FirestoreDataConverter, QueryDocumentSnapshot } from "firebase-admin/firestore";
 
 
-export type Company = {
-  id?: string;
+export class Company {
+  id: string;
   razaoSocial: string;
   nomeFantasia: string;
- logoMarca: string;
+  logoMarca: string;
   cpfCnpj: string;
   telefone: string;
   horarioFuncionamento: string;
@@ -14,6 +15,20 @@ export type Company = {
   localizacao: string;
   taxaEntrega: number;
   ativa: boolean;
+
+  constructor(data: Company | any) {
+    this.id = data.id;
+    this.razaoSocial = data.razaoSocial;
+    this.nomeFantasia = data.nomeFantasia;
+    this.logoMarca = data.logoMarca;
+    this.cpfCnpj = data.cpfCnpj;
+    this.telefone = data.telefone;
+    this.horarioFuncionamento = data.horarioFuncionamento;
+    this.endereco = data.endereco;
+    this.localizacao = data.localizacao;
+    this.taxaEntrega = data.taxaEntrega;
+    this.ativa = data.ativa ?? true;
+  }
 
 };
 
@@ -60,3 +75,26 @@ export const authLoginCompanySchema = Joi.object().keys({
 export const authRecoveryCompanySchema = Joi.object().keys({
   email: Joi.string().email().required(),
 })
+
+export const companyConverter: FirestoreDataConverter<Company> = {
+  toFirestore: (company: Company): DocumentData => {
+    return{
+      razaoSocial: company.razaoSocial,
+      nomeFantasia: company.nomeFantasia,
+      logoMarca: company.logoMarca,
+      cpfCnpj: company.cpfCnpj,
+      telefone: company.telefone,
+      horarioFuncionamento: company.horarioFuncionamento,
+      endereco: company.endereco,
+      localizacao: company.localizacao,
+      taxaEntrega: company.taxaEntrega,
+      ativa: company.ativa
+    }
+  },
+  fromFirestore: (snapshot: QueryDocumentSnapshot): Company => {
+    return new Company({
+      id: snapshot.id,
+      ...snapshot.data()
+    });
+  }
+}

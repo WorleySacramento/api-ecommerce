@@ -1,47 +1,32 @@
 import { CollectionReference, getFirestore } from "firebase-admin/firestore";
-import { User } from "../models/user.model";
+import { User, userConverter } from "../models/user.model";
 
 export class UserRepository {
 
-  private collection = {} as CollectionReference;
+  private collection = {} as CollectionReference<User>;
 
   constructor() {
-    this.collection = getFirestore().collection('users');
+    this.collection = getFirestore()
+    .collection('users')
+    .withConverter( userConverter );
   }
 
   async getAll(): Promise<User[]> {
     const snapShot = await this.collection.get();
-    return snapShot.docs.map(doc => {
-      return {
-        id: doc.id,
-        ...doc.data()
-      };
-    }) as User[];
+    return snapShot.docs.map(doc => doc.data());
   }
 
   async getById(id: string): Promise<User | null> {
     const userDoc = await this.collection.doc(id).get();
-    if (userDoc.exists) {
-      return {
-        id: userDoc.id,
-        ...userDoc.data()
-      } as User;
-    } else {
-      return null;
-    }
+      return userDoc.data() ?? null;
   }
 
   async createUser(user: User): Promise<void> {
-    // delete user.password;
     await this.collection.add(user);
   }
 
   async updateUser( user: User): Promise<void> {
-     let docRef = this.collection.doc(user.id);
-      await docRef.set({
-        name: user.name,
-        email: user.email
-      });
+     await this.collection.doc(user.id).set(user);
   }
   
   async deleteUser(id: string): Promise<void> {

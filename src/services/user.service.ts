@@ -39,7 +39,7 @@ export class UserService {
       throw new NotFoundError("User not found");
     }
     _user.name = user.name;
-    _user.idade = user.idade;
+    // _user.idade = user.idade;
     _user.email = user.email;
 
     await this.authService.update(id, user);

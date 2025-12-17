@@ -1,47 +1,35 @@
 
-import { Company } from './../models/company.model';
+import { Company, companyConverter } from './../models/company.model';
 import { CollectionReference, getFirestore } from "firebase-admin/firestore";
 
 
 export class CompanyRepository {
 
-  private collection = {} as CollectionReference;
+  private collection = {} as CollectionReference<Company>;
 
   constructor() {
-    this.collection = getFirestore().collection('companies');
+    this.collection = getFirestore()
+      .collection('companies')
+      .withConverter(companyConverter);
   }
 
   async getAll(): Promise<Company[]> {
     const snapShot = await this.collection.get();
-    return snapShot.docs.map(doc => {
-      return {
-        id: doc.id,
-        ...doc.data()
-      };
-    }) as Company[];
+    return snapShot.docs.map(doc => doc.data());
   }
 
   async getById(id: string): Promise<Company | null> {
-    const userDoc = await this.collection.doc(id).get();
-    if (userDoc.exists) {
-      return {
-        id: userDoc.id,
-        ...userDoc.data()
-      } as Company;
-    } else {
-      return null;
-    }
+    const userDoc = await this.collection.doc(id).get();  
+      return userDoc.data() ?? null;
+
   }
 
   async save(company: Company): Promise<void> {
-    // delete user.password;
     await this.collection.add(company);
   }
 
-  async update( company: Company): Promise<void> {
-     let docRef = this.collection.doc(company.id!);
-     delete company.id;
-      await docRef.set(company);
+  async update(company: Company) {
+    await this.collection.doc(company.id).set(company);
   }
 
 }
