@@ -1,13 +1,15 @@
 import { CollectionReference, getFirestore } from "firebase-admin/firestore";
-import { Order, QueryParamsOrder } from "../models/order.model.js";
+import { Order, orderConverter, QueryParamsOrder } from "../models/order.model.js";
 import dayjs from "dayjs";
 
 export class OrderRepository {
 
-    private collection: CollectionReference;
+    private collection: CollectionReference<Order>;
 
     constructor() {
-        this.collection = getFirestore().collection('orders');
+        this.collection = getFirestore()
+        .collection('orders')
+        .withConverter( orderConverter );
     }
 
     async save(order: Order) {
@@ -15,7 +17,7 @@ export class OrderRepository {
     }
 
     async search(queryParams: QueryParamsOrder): Promise<Order[]> {
-        let query: FirebaseFirestore.Query = this.collection;
+        let query: FirebaseFirestore.Query<Order> = this.collection;
         
         if (queryParams.empresaId) {
             query = query.where("empresa.id", "==", queryParams.empresaId);
@@ -36,12 +38,7 @@ export class OrderRepository {
         }
 
         const snapshot = await query.get();
-        return snapshot.docs.map(doc => {
-            return new Order({
-                id: doc.id,
-                ...doc.data()
-            });
-        });
+        return snapshot.docs.map(doc => doc.data());
     }
     
 }

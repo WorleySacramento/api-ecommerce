@@ -4,7 +4,7 @@ import { Company } from "./company.model";
 import { Customer, customerSchema } from "./customer.model";
 import { Address, orderAddressSchema } from "./address.model";
 import { OrderItem, orderItemSchema } from "./order-item.model";
-import { FieldValue, Timestamp } from "firebase-admin/firestore";
+import { DocumentData, FieldValue, FirestoreDataConverter, QueryDocumentSnapshot, Timestamp } from "firebase-admin/firestore";
 
 
 export class Order {
@@ -19,6 +19,8 @@ export class Order {
   itens: OrderItem[];
   isEntrega: boolean;
   status: OrderStatus;
+  observacoes: string;
+
 
 
   constructor(data: any) {
@@ -26,13 +28,14 @@ export class Order {
     this.empresa = data.empresa;
     this.cliente = data.cliente;
     this.endereco = data.endereco;
-    this.cpfCnpjCupom = data.cpfCnpjCupom;    
+    this.cpfCnpjCupom = data.cpfCnpjCupom;
     this.data = data.data instanceof Timestamp ? data.data.toDate() : data.data;
     this.isEntrega = data.isEntrega;
     this.formaPagamento = data.formaPagamento;
     this.taxaEntrega = data.taxaEntrega;
     this.itens = data.itens;
-    this.status = data.status;
+    this.status = data.status ?? OrderStatus.PENDENTE;
+    this.observacoes = data.observacoes;
   }
 };
 
@@ -54,10 +57,10 @@ export const newOrderSchema = Joi.object().keys({
   cliente: customerSchema.required(),
   endereco: Joi.alternatives().conditional(
     'isEntrega', {
-      is: true,
-      then: orderAddressSchema.required(),
-      otherwise: Joi.object().only().allow(null).default(null)
-    }
+    is: true,
+    then: orderAddressSchema.required(),
+    otherwise: Joi.object().only().allow(null).default(null)
+  }
   ),
   cpfCnpjCupom: Joi.alternatives().try(
     Joi.string().length(11).required(),
@@ -69,7 +72,9 @@ export const newOrderSchema = Joi.object().keys({
   taxaEntrega: Joi.number().min(0).required(),
   isEntrega: Joi.boolean().required(),
   itens: Joi.array().items(orderItemSchema).min(1).required(),
-  status: Joi.string().only().allow(OrderStatus.PENDENTE).default(OrderStatus.PENDENTE)
+  status: Joi.string().only().allow(OrderStatus.PENDENTE).default(OrderStatus.PENDENTE),
+  observacoes: Joi.string().trim().allow(null).default(null)
+
 });
 
 export const updateOrderSchema = Joi.object().keys({});
@@ -87,3 +92,50 @@ export const searchOrderQuerySchema = Joi.object().keys({
   dataFim: Joi.date(),
   status: Joi.string().only().allow(...Object.values(OrderStatus))
 });
+
+export const orderConverter: FirestoreDataConverter<Order> = {
+  toFirestore: (order: Order): DocumentData => {
+    return {
+      empresa: {
+        id: order.empresa.id,
+        nomeFantasia: order.empresa.nomeFantasia,
+        razaoSocial: order.empresa.razaoSocial,
+        cpfCnpj: order.empresa.cpfCnpj,
+        logoMarca: order.empresa.logoMarca,
+        endereco: order.empresa.endereco,
+        localizacao: order.empresa.localizacao,
+        telefone: order.empresa.telefone
+      },
+      cliente: {
+        nome: order.cliente.nome,
+        telefone: order.cliente.telefone
+      },
+      endereco: {
+        rua: order.endereco.rua,
+        numero: order.endereco.numero,
+        complemento: order.endereco.complemento,
+        cep: order.endereco.cep,
+        cidade: order.endereco.cidade,
+        estado: order.endereco.estado
+      },
+      cpfCnpjCupom: order.cpfCnpjCupom,
+      data: FieldValue.serverTimestamp(),
+      isEntrega: order.isEntrega,
+      formaPagamento: {
+        id: order.formaPagamento.id,
+        descricao: order.formaPagamento.descricao
+      },
+      taxaEntrega: order.empresa.taxaEntrega,
+      status: order.status,
+      observacoes: order.observacoes
+    };
+  },
+
+
+  fromFirestore: (snapshot: QueryDocumentSnapshot): Order => {
+    return new Order({
+      id: snapshot.id,
+      ...snapshot.data()
+    });
+  }
+};
