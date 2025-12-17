@@ -22,4 +22,10 @@ export class OrdersController {
         res.send(itens);
     }
 
+    static async getById(req: Request, res: Response) {
+        const orderById = await new OrderService().getById(req.params.id);
+        res.send(orderById);
+    }
+
+
 }

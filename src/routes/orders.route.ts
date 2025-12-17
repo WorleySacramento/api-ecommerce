@@ -21,3 +21,7 @@ ordersRoute.get("/orders",
 ordersRoute.get("/orders/:id/items", 
   expressAsyncHandler(OrdersController.getItems)
 );
+
+ordersRoute.get("/orders/:id", 
+  expressAsyncHandler(OrdersController.getById)
+);
