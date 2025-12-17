@@ -13,7 +13,11 @@ ordersRoute.post(
   expressAsyncHandler(OrdersController.save)
 );
 
-ordersRoute.get("/orders", celebrate({[Segments.QUERY]:searchOrderQuerySchema}),
+ordersRoute.get("/orders", 
+  celebrate({[Segments.QUERY]:searchOrderQuerySchema}),
   expressAsyncHandler(OrdersController.search)
-  
+);
+
+ordersRoute.get("/orders/:id/items", 
+  expressAsyncHandler(OrdersController.getItems)
 );

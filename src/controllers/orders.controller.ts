@@ -16,4 +16,10 @@ export class OrdersController {
         res.send(orders);
 
     }
+
+   static async getItems(req: Request, res: Response) {
+        const itens = await new OrderService().getItems(req.params.id);
+        res.send(itens);
+    }
+
 }
