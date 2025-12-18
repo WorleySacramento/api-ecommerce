@@ -10,7 +10,7 @@ export class PaymentsController {
   }
 
   static async getById(req: Request, res: Response) {
-    let paymentMethodId = req.params.id;
+    const paymentMethodId = req.params.id;
     res.send(await new PaymentService().getById(paymentMethodId));
   }
 
@@ -22,14 +22,14 @@ export class PaymentsController {
   }
 
   static async update(req: Request, res: Response) {
-    let paymentMethodId = req.params.id;
-    let paymentMethod = req.body as PaymentMethod;
+    const paymentMethodId = req.params.id;
+    const paymentMethod = req.body as PaymentMethod;
     await new PaymentService().update(paymentMethodId, paymentMethod);
     res.send({ message: "Payment method updated" });
   }
 
   static async delete(req: Request, res: Response) {
-    let paymentMethodId = req.params.id;
+    const paymentMethodId = req.params.id;
     await new PaymentService().delete(paymentMethodId);
     res.send({ message: "Payment method deleted" });
   }

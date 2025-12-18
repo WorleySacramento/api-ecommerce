@@ -15,7 +15,7 @@ export class ProductsController {
  }
 
   static async getById(req: Request, res: Response) {
-    let productId = req.params.id;
+    const productId = req.params.id;
     res.send(await new ProductService().getById(productId));
   }
 
@@ -25,14 +25,14 @@ export class ProductsController {
   }
 
   static async update(req: Request, res: Response) {
-    let productId = req.params.id;
-    let product = req.body as Product;
+    const productId = req.params.id;
+    const product = req.body as Product;
     await new ProductService().update(productId, product);
     res.send({ message: "Product updated" });
   }
 
   static async delete(req: Request, res: Response) {
-    let productId = req.params.id;
+    const productId = req.params.id;
     await new ProductService().delete(productId);
     res.send({ message: "Product deleted" });
   }

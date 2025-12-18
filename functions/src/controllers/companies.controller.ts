@@ -11,7 +11,7 @@ export class CompaniesController {
   }
 
   static async getById(req: Request, res: Response) {
-    let companyId = req.params.id;
+    const companyId = req.params.id;
     res.send(await new CompanyService().getById(companyId));
   }
 
@@ -21,8 +21,8 @@ export class CompaniesController {
   }
 
   static async updateCompany(req: Request, res: Response) {
-    let companyId = req.params.id;
-    let company = req.body as Company;
+    const companyId = req.params.id;
+    const company = req.body as Company;
     await new CompanyService().update(companyId, company);
     res.send({ message: "Company updated" });
   }

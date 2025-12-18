@@ -39,7 +39,7 @@ export class CategoryRepository {
   }
 
   async update( category: Category){
-     let docRef = this.collection.doc(category.id!);
+     const docRef = this.collection.doc(category.id!);
      
       await docRef.set({
         descricao: category.descricao,

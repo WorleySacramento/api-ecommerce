@@ -314,3 +314,500 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [debug] [2025-12-18T20:55:23.650Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
 [debug] [2025-12-18T20:55:23.650Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
 [debug] [2025-12-18T20:55:23.650Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-12-18T21:02:32.747Z] File D:\codebase\api-ecommerce\functions\package.json changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\package.json changed, reloading triggers"}}
+[debug] [2025-12-18T21:02:33.759Z] Validating nodejs source
+[debug] [2025-12-18T21:02:34.437Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0",
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.7.3",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:02:34.437Z] Building nodejs source
+[debug] [2025-12-18T21:02:34.437Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:02:34.439Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:02:34.442Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8236
+
+[debug] [2025-12-18T21:02:35.220Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:02:39.244Z] [worker-pool] Shutting down IDLE worker (us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Shutting down IDLE worker (us-central1-api)"}}
+[debug] [2025-12-18T21:02:39.244Z] [worker-us-central1-api-8d329279-873c-4abf-853c-0b0307a0bedf]: FINISHING {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-8d329279-873c-4abf-853c-0b0307a0bedf]: FINISHING"}}
+[debug] [2025-12-18T21:02:39.253Z] [worker-us-central1-api-8d329279-873c-4abf-853c-0b0307a0bedf]: exited {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-8d329279-873c-4abf-853c-0b0307a0bedf]: exited"}}
+[debug] [2025-12-18T21:02:39.253Z] [worker-us-central1-api-8d329279-873c-4abf-853c-0b0307a0bedf]: FINISHED {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-8d329279-873c-4abf-853c-0b0307a0bedf]: FINISHED"}}
+[debug] [2025-12-18T21:02:55.875Z] File D:\codebase\api-ecommerce\functions\package-lock.json changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\package-lock.json changed, reloading triggers"}}
+[debug] [2025-12-18T21:02:56.880Z] Validating nodejs source
+[debug] [2025-12-18T21:02:57.672Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0",
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.7.3",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:02:57.672Z] Building nodejs source
+[debug] [2025-12-18T21:02:57.672Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:02:57.673Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:02:57.676Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8263
+
+[debug] [2025-12-18T21:02:58.438Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:04:54.836Z] File D:\codebase\api-ecommerce\functions\package.json changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\package.json changed, reloading triggers"}}
+[debug] [2025-12-18T21:04:55.065Z] File D:\codebase\api-ecommerce\functions\package-lock.json changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\package-lock.json changed, reloading triggers"}}
+[debug] [2025-12-18T21:04:56.069Z] Validating nodejs source
+[debug] [2025-12-18T21:04:56.853Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.2",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:04:56.854Z] Building nodejs source
+[debug] [2025-12-18T21:04:56.854Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:04:56.857Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:04:56.863Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8531
+
+[debug] [2025-12-18T21:04:58.089Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:06:01.914Z] File D:\codebase\api-ecommerce\functions\eslint.config.mjs changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\eslint.config.mjs changed, reloading triggers"}}
+[debug] [2025-12-18T21:06:02.928Z] Validating nodejs source
+[debug] [2025-12-18T21:06:03.589Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.2",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:06:03.590Z] Building nodejs source
+[debug] [2025-12-18T21:06:03.590Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:06:03.591Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:06:03.594Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8471
+
+[debug] [2025-12-18T21:06:04.388Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:06:56.932Z] File D:\codebase\api-ecommerce\functions\package.json changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\package.json changed, reloading triggers"}}
+[debug] [2025-12-18T21:06:57.947Z] Validating nodejs source
+[debug] [2025-12-18T21:06:58.753Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.2",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:06:58.753Z] Building nodejs source
+[debug] [2025-12-18T21:06:58.753Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:06:58.754Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:06:58.757Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8737
+
+[debug] [2025-12-18T21:06:59.515Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:09:29.641Z] File D:\codebase\api-ecommerce\functions\eslint.config.mjs changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\eslint.config.mjs changed, reloading triggers"}}
+[debug] [2025-12-18T21:09:30.648Z] Validating nodejs source
+[debug] [2025-12-18T21:09:31.245Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.2",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:09:31.246Z] Building nodejs source
+[debug] [2025-12-18T21:09:31.246Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:09:31.247Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:09:31.251Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8392
+
+[debug] [2025-12-18T21:09:32.048Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:09:38.693Z] File D:\codebase\api-ecommerce\functions\eslint.config.mjs changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\eslint.config.mjs changed, reloading triggers"}}
+[debug] [2025-12-18T21:09:39.705Z] Validating nodejs source
+[debug] [2025-12-18T21:09:40.304Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.2",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:09:40.304Z] Building nodejs source
+[debug] [2025-12-18T21:09:40.305Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:09:40.306Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:09:40.309Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8566
+
+[debug] [2025-12-18T21:09:41.124Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:11:45.045Z] File D:\codebase\api-ecommerce\functions\src\controllers\products.controller.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\controllers\\products.controller.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.046Z] File D:\codebase\api-ecommerce\functions\src\controllers\categories.controller.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\controllers\\categories.controller.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.046Z] File D:\codebase\api-ecommerce\functions\src\repositories\category.repository.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\repositories\\category.repository.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.046Z] File D:\codebase\api-ecommerce\functions\src\controllers\payments.controller.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\controllers\\payments.controller.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.046Z] File D:\codebase\api-ecommerce\functions\src\repositories\order.repository.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\repositories\\order.repository.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.050Z] File D:\codebase\api-ecommerce\functions\src\services\order.service.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\services\\order.service.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.051Z] File D:\codebase\api-ecommerce\functions\src\controllers\companies.controller.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\controllers\\companies.controller.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.051Z] File D:\codebase\api-ecommerce\functions\src\controllers\users.controller.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\controllers\\users.controller.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.496Z] File D:\codebase\api-ecommerce\functions\lib\controllers\users.controller.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\users.controller.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.497Z] File D:\codebase\api-ecommerce\functions\lib\controllers\users.controller.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\users.controller.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.499Z] File D:\codebase\api-ecommerce\functions\lib\routes\users.route.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\users.route.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.500Z] File D:\codebase\api-ecommerce\functions\lib\routes\users.route.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\users.route.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.503Z] File D:\codebase\api-ecommerce\functions\lib\routes\index.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\index.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.503Z] File D:\codebase\api-ecommerce\functions\lib\routes\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\index.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.505Z] File D:\codebase\api-ecommerce\functions\lib\controllers\companies.controller.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\companies.controller.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.507Z] File D:\codebase\api-ecommerce\functions\lib\controllers\companies.controller.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\companies.controller.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.510Z] File D:\codebase\api-ecommerce\functions\lib\routes\companies.route.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\companies.route.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.513Z] File D:\codebase\api-ecommerce\functions\lib\routes\companies.route.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\companies.route.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.516Z] File D:\codebase\api-ecommerce\functions\lib\repositories\category.repository.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\repositories\\category.repository.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.518Z] File D:\codebase\api-ecommerce\functions\lib\repositories\category.repository.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\repositories\\category.repository.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.522Z] File D:\codebase\api-ecommerce\functions\lib\services\product.service.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\services\\product.service.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.523Z] File D:\codebase\api-ecommerce\functions\lib\services\product.service.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\services\\product.service.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.524Z] File D:\codebase\api-ecommerce\functions\lib\controllers\products.controller.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\products.controller.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.525Z] File D:\codebase\api-ecommerce\functions\lib\controllers\products.controller.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\products.controller.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.527Z] File D:\codebase\api-ecommerce\functions\lib\routes\products.route.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\products.route.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.527Z] File D:\codebase\api-ecommerce\functions\lib\routes\products.route.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\products.route.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.531Z] File D:\codebase\api-ecommerce\functions\lib\services\category.service.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\services\\category.service.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.532Z] File D:\codebase\api-ecommerce\functions\lib\services\category.service.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\services\\category.service.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.534Z] File D:\codebase\api-ecommerce\functions\lib\controllers\categories.controller.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\categories.controller.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.535Z] File D:\codebase\api-ecommerce\functions\lib\controllers\categories.controller.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\categories.controller.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.538Z] File D:\codebase\api-ecommerce\functions\lib\routes\categories.route.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\categories.route.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.539Z] File D:\codebase\api-ecommerce\functions\lib\routes\categories.route.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\categories.route.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.541Z] File D:\codebase\api-ecommerce\functions\lib\controllers\payments.controller.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\payments.controller.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.541Z] File D:\codebase\api-ecommerce\functions\lib\controllers\payments.controller.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\payments.controller.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.544Z] File D:\codebase\api-ecommerce\functions\lib\routes\payments.route.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\payments.route.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.544Z] File D:\codebase\api-ecommerce\functions\lib\routes\payments.route.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\payments.route.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.546Z] File D:\codebase\api-ecommerce\functions\lib\repositories\order.repository.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\repositories\\order.repository.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.549Z] File D:\codebase\api-ecommerce\functions\lib\repositories\order.repository.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\repositories\\order.repository.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.551Z] File D:\codebase\api-ecommerce\functions\lib\services\order.service.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\services\\order.service.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.551Z] File D:\codebase\api-ecommerce\functions\lib\services\order.service.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\services\\order.service.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.553Z] File D:\codebase\api-ecommerce\functions\lib\controllers\orders.controller.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\orders.controller.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.554Z] File D:\codebase\api-ecommerce\functions\lib\controllers\orders.controller.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\controllers\\orders.controller.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.556Z] File D:\codebase\api-ecommerce\functions\lib\routes\orders.route.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\orders.route.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:45.558Z] File D:\codebase\api-ecommerce\functions\lib\routes\orders.route.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\routes\\orders.route.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:11:46.567Z] Validating nodejs source
+[debug] [2025-12-18T21:11:47.309Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.2",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:11:47.309Z] Building nodejs source
+[debug] [2025-12-18T21:11:47.309Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:11:47.310Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:11:47.313Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8525
+
+[debug] [2025-12-18T21:11:48.040Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:17:06.291Z] File D:\codebase\api-ecommerce\functions\src\middlewares\error.handler.middleware.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\src\\middlewares\\error.handler.middleware.ts changed, reloading triggers"}}
+[debug] [2025-12-18T21:17:06.626Z] File D:\codebase\api-ecommerce\functions\lib\middlewares\error.handler.middleware.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\middlewares\\error.handler.middleware.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:17:06.626Z] File D:\codebase\api-ecommerce\functions\lib\middlewares\error.handler.middleware.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\middlewares\\error.handler.middleware.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:17:06.628Z] File D:\codebase\api-ecommerce\functions\lib\index.js.map changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\index.js.map changed, reloading triggers"}}
+[debug] [2025-12-18T21:17:06.628Z] File D:\codebase\api-ecommerce\functions\lib\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\lib\\index.js changed, reloading triggers"}}
+[debug] [2025-12-18T21:17:07.633Z] Validating nodejs source
+[debug] [2025-12-18T21:17:08.457Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.2",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:17:08.457Z] Building nodejs source
+[debug] [2025-12-18T21:17:08.457Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:17:08.458Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:17:08.462Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8235
+
+[debug] [2025-12-18T21:17:09.289Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[debug] [2025-12-18T21:20:24.355Z] File D:\codebase\api-ecommerce\functions\eslint.config.mjs changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\eslint.config.mjs changed, reloading triggers"}}
