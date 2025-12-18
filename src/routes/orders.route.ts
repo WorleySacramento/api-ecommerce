@@ -1,7 +1,7 @@
 import { celebrate, Segments } from "celebrate";
 import { Router } from "express";
 import expressAsyncHandler from "express-async-handler";
-import { newOrderSchema, searchOrderQuerySchema } from "../models/order.model";
+import { changeStatusOrderSchema, newOrderSchema, searchOrderQuerySchema } from "../models/order.model";
 import { OrdersController } from "../controllers/orders.controller";
 
 
@@ -24,4 +24,9 @@ ordersRoute.get("/orders/:id/items",
 
 ordersRoute.get("/orders/:id", 
   expressAsyncHandler(OrdersController.getById)
+);
+
+ordersRoute.post("/orders/:id/status",
+  celebrate({[Segments.BODY]: changeStatusOrderSchema}),
+  expressAsyncHandler(OrdersController.changeStatus)
 );

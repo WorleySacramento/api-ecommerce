@@ -105,6 +105,16 @@ export const searchOrderQuerySchema = Joi.object().keys({
   status: Joi.string().only().allow(...Object.values(OrderStatus))
 });
 
+export const changeStatusOrderSchema = Joi.object().keys({
+  status:Joi.string().only().allow(
+    OrderStatus.APROVADO,
+    OrderStatus.EM_PREPARACAO,
+    OrderStatus.EM_ENTREGA,
+    OrderStatus.ENTREGUE,
+    OrderStatus.CANCELADO
+  ).required()
+})
+
 export const orderConverter: FirestoreDataConverter<Order> = {
   toFirestore: (order: Order): DocumentData => {
     return {

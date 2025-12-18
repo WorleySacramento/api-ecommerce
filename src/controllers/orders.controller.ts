@@ -27,5 +27,12 @@ export class OrdersController {
         res.send(orderById);
     }
 
+    static async changeStatus(req: Request, res: Response) {
+        const pedidoId = req.params.id;
+        const status = req.body.status;
+        await new OrderService().changeStatus(pedidoId, status);
+        res.end();
+    
+    }
 
 }
