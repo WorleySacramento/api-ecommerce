@@ -811,3 +811,52 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [debug] [2025-12-18T21:17:09.289Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
 [info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
 [debug] [2025-12-18T21:20:24.355Z] File D:\codebase\api-ecommerce\functions\eslint.config.mjs changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\codebase\\api-ecommerce\\functions\\eslint.config.mjs changed, reloading triggers"}}
+[debug] [2025-12-18T21:20:25.364Z] Validating nodejs source
+[debug] [2025-12-18T21:20:26.156Z] > [functions] package.json contents: {
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "dayjs": "^1.11.19",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.2",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "private": true
+}
+[debug] [2025-12-18T21:20:26.156Z] Building nodejs source
+[debug] [2025-12-18T21:20:26.156Z] Failed to find version of module node: reached end of search path D:\codebase\api-ecommerce\functions\node_modules
+[info] +  functions: Using node@24 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-12-18T21:20:26.158Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-12-18T21:20:26.161Z] Found firebase-functions binary at 'D:\codebase\api-ecommerce\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8075
+
+[debug] [2025-12-18T21:20:26.905Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
