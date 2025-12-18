@@ -10,9 +10,9 @@ import { allowAnonymousUser } from "../middlewares/allow-anonymous-user.middlewa
 
 export const routes = (app: express.Express) => {
   app.use(express.json());
-  app.use(allowAnonymousUser)
   app.use(express.urlencoded({ extended: true }));
   app.use(authRoutes);
+  app.use(allowAnonymousUser)
   app.use(usersRoute);
   app.use(companyRoute);
   app.use(categoryRoute)
