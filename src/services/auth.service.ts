@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, getAuth as getAuthSignIn, UserCredential, sendPasswordResetEmail } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth as getAuthSignIn, UserCredential, sendPasswordResetEmail, signInAnonymously } from "firebase/auth";
 import { EmailAlreadyExistsError } from "../errors/email-already-exists";
 import { User } from "../models/user.model";
 import { getAuth, UpdateRequest, UserRecord } from "firebase-admin/auth";
@@ -21,16 +21,16 @@ export class AuthService {
     });
   }
 
-  async update(id: string, user: User){
+  async update(id: string, user: User) {
     const props: UpdateRequest = {
       displayName: user.name,
       email: user.email
     };
 
-    if(user.password){
+    if (user.password) {
       props.password = user.password;
     }
-   await getAuth().updateUser(id, props);
+    await getAuth().updateUser(id, props);
   }
 
   async login(email: string, password: string): Promise<UserCredential> {
@@ -46,13 +46,18 @@ export class AuthService {
   }
 
 
-  async delete(id: string){
+  async delete(id: string) {
     await getAuth().deleteUser(id);
   }
 
   async recovery(email: string) {
-  await  sendPasswordResetEmail(getAuthSignIn(), email);
-
+    await sendPasswordResetEmail(getAuthSignIn(), email);
   }
+
+    async signin(): Promise<UserCredential> {
+    return await signInAnonymously(getAuthSignIn())
+      
+  }
+
 
 }

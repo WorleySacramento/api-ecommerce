@@ -6,9 +6,11 @@ import { categoryRoute } from "./categories.route";
 import { productRoute } from "./products.route";
 import { paymentRoute } from "./payments.route";
 import { ordersRoute } from "./orders.route";
+import { allowAnonymousUser } from "../middlewares/allow-anonymous-user.middleware.ts";
 
 export const routes = (app: express.Express) => {
   app.use(express.json());
+  app.use(allowAnonymousUser)
   app.use(express.urlencoded({ extended: true }));
   app.use(authRoutes);
   app.use(usersRoute);

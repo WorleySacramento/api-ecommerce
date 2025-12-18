@@ -16,3 +16,5 @@ authRoutes.post("/auth/login", celebrate({[Segments.BODY]:
 authRoutes.post("/auth/recovery", celebrate({[Segments.BODY]:
   authRecoverySchema
 }), asyncHandler(AuthController.recovery));
+
+authRoutes.post("/auth/signin", asyncHandler(AuthController.signin));
