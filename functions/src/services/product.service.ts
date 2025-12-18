@@ -1,4 +1,4 @@
-import { Product } from './../models/product.model';
+import { Product } from '../models/product.model';
 import { NotFoundError } from "../errors/not-found.error";
 import { ProductRepository } from '../repositories/product.repository';
 import { CategoryRepository } from '../repositories/category.repository';

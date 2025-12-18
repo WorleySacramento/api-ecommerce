@@ -1,19 +1,20 @@
 import express from "express";
-import { initializeApp as initializeAppAdmin, cert } from 'firebase-admin/app';
-import {initializeApp as initializeFireBaseApp} from "firebase/app";
+import { initializeApp as initializeAppAdmin } from 'firebase-admin/app';
+import { initializeApp as initializeAppClient } from "firebase/app";
 import { routes } from "./routes/index";
 import { errorHandler } from "./middlewares/error.handler.middleware";
 import { pageNotFoundHandler } from "./middlewares/page-not-found.middeware";
 import { auth } from "./middlewares/auth.middleware";
+import { onRequest } from "firebase-functions/v1/https";
 
-const serviceAccount = require('../firebase-adminsdk-.json');
+initializeAppAdmin();
 
-initializeAppAdmin({
-  credential: cert(serviceAccount),
-});
-initializeFireBaseApp({
+initializeAppClient({
   apiKey: process.env.API_KEY,
-})
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+});
+
 const app = express();
 
 auth(app)
@@ -21,7 +22,4 @@ routes(app);
 pageNotFoundHandler(app);
 errorHandler(app);
 
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
-
+export const api = onRequest(app);

@@ -1,4 +1,4 @@
-import { Product } from './../models/product.model';
+import { Product } from '../models/product.model';
 import { Request, Response } from "express";
 import { ProductService } from '../services/product.service';
 

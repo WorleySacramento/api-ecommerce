@@ -1,4 +1,4 @@
-import { PaymentService } from './../services/payment.service';
+import { PaymentService } from '../services/payment.service';
 import { Request, Response } from "express";
 import { PaymentMethod } from '../models/payments.model';
 

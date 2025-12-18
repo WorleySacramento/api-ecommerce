@@ -1,5 +1,5 @@
 
-import { Company, companyConverter } from './../models/company.model';
+import { Company, companyConverter } from '../models/company.model';
 import { CollectionReference, getFirestore } from "firebase-admin/firestore";
 
 
