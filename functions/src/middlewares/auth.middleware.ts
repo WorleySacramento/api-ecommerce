@@ -36,7 +36,10 @@ export const auth = (app: express.Express) => {
         }
       }
     }
-     return next(new UnauthorizedError());
+
+    // If there is no token, don't block here — let the `allowAnonymousUser`
+    // middleware decide whether the route is public or forbidden.
+    return next();
   });
 
   const isRoutUnAuthenticated = (req: Request): boolean => {
